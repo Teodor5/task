@@ -4,7 +4,7 @@ package com.mobileapp.task.weather.ForecastPOJO;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ForecactPOJO {
+public class ForecastPOJO {
 
     @SerializedName("cod")
     @Expose
