@@ -7,13 +7,12 @@ import retrofit.http.GET;
 import retrofit.http.Query;
 
 
-public interface WeatherService {
+public interface ForecastService {
 
-    @GET("2.5/weather")
-    Call<WeatherPOJO> getWeather(@Query("lat") double lat,
+    @GET("2.5/forecast")
+    Call<WeatherPOJO> getForecast(@Query("lat") double lat,
                                  @Query("lon") double lon,
                                  @Query("units") String units,
-                                 @Query("lang") String lang,
                                  @Query("appid") String appid);
 
 }

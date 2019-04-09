@@ -102,7 +102,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         mDrawer = findViewById(R.id.main_drawer);
         mWeatherDatabase = new WeatherDatabase(this);
-        LoadPreferencesfirstName();
         configViews();
 
 
@@ -234,7 +233,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         WeatherService service = retrofit.create(WeatherService.class);
 
         Call<WeatherPOJO> listCall = service.getWeather(gpsTracker.getLatitude(),gpsTracker.getLongitude(),
-                "metric",passwordString);
+                "metric","ua",passwordString);
         listCall.enqueue(new Callback<WeatherPOJO>() {
             @SuppressLint("SetTextI18n")
             @Override
@@ -244,7 +243,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     WeatherPOJO weatherList = response.body();
 
                     Snackbar snackbar = Snackbar
-                            .make(mDrawerLayout, "Loading live data", Snackbar.LENGTH_LONG);
+                            .make(mDrawerLayout, "Завантаження актуальних даних", Snackbar.LENGTH_LONG);
                     ViewGroup group = (ViewGroup) snackbar.getView();
                     group.setBackgroundColor(ContextCompat.getColor(HomeActivity.this, R.color.colorPrimaryDark));
                     snackbar.show();
@@ -278,10 +277,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         main.setText(String.valueOf(weatherList.getWeather().get(z).getMain()));
                         description.setText(String.valueOf(weatherList.getWeather().get(z).getDescription()));
                         temp.setText(String.valueOf(weatherList.getMain().getTemp())+ GetUnit(String.valueOf(getApplication().getResources().getConfiguration().locale.getCountry())));
-                        humidity.setText(String.valueOf(weatherList.getMain().getHumidity())+ " per cent");
-                        min.setText(String.valueOf(weatherList.getMain().getTempMin())+ " min");
-                        max.setText(String.valueOf(weatherList.getMain().getTempMax())+ " max");
-                        speed.setText(String.valueOf(weatherList.getWind().getSpeed()) + " meter/sec");
+                        humidity.setText(String.valueOf(weatherList.getMain().getHumidity())+ " відсотків");
+                        min.setText(String.valueOf(weatherList.getMain().getTempMin())+ " мін.");
+                        max.setText(String.valueOf(weatherList.getMain().getTempMax())+ " макс.");
+                        speed.setText(String.valueOf(weatherList.getWind().getSpeed()) + " м/с");
                         name.setText(String.valueOf(weatherList.getName()));
                         country.setText(String.valueOf(weatherList.getSys().getCountry()));
                         sunrise.setText(UnixTime(Long.parseLong(String.valueOf(weatherList.getSys().getSunrise()))));
@@ -385,7 +384,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         List<DatabasePOJO> dataList = mWeatherDatabase.getAllData();
 
         Snackbar snackbar = Snackbar
-                .make(mDrawerLayout, "Loading local stored data", Snackbar.LENGTH_LONG);
+                .make(mDrawerLayout, "Завантаження локальних збережених даних", Snackbar.LENGTH_LONG);
         ViewGroup group = (ViewGroup) snackbar.getView();
         group.setBackgroundColor(ContextCompat.getColor(HomeActivity.this, R.color.colorPrimaryDark));
         snackbar.show();
@@ -395,10 +394,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             main.setText(String.valueOf(data.getMain()));
             description.setText(String.valueOf(data.getDescription()));
             temp.setText(String.valueOf(data.getTemp())+ GetUnit(String.valueOf(this.getResources().getConfiguration().locale.getCountry())));
-            humidity.setText(String.valueOf(data.getHumidity())+ " per cent");
-            min.setText(String.valueOf(data.getTemp_min()) + " min");
-            max.setText(String.valueOf(data.getTemp_max())+ " max");
-            speed.setText(String.valueOf(data.getSpeed()) + " meter/sec");
+            humidity.setText(String.valueOf(data.getHumidity())+ " відсотків");
+            min.setText(String.valueOf(data.getTemp_min()) + " мін.");
+            max.setText(String.valueOf(data.getTemp_max())+ " макс.");
+            speed.setText(String.valueOf(data.getSpeed()) + " м/с");
             name.setText(String.valueOf(data.getName()));
             country.setText(String.valueOf(data.getCountry()));
             sunrise.setText(UnixTime(Long.parseLong(String.valueOf(data.getSunrise()))));
@@ -458,7 +457,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private void NotConnected(){
 
         Snackbar snackbar = Snackbar
-                .make(mDrawerLayout, "Not connected to the api.", Snackbar.LENGTH_LONG);
+                .make(mDrawerLayout, "Не вдалося оновити дані.", Snackbar.LENGTH_LONG);
         ViewGroup group = (ViewGroup) snackbar.getView();
         group.setBackgroundColor(ContextCompat.getColor(HomeActivity.this, R.color.colorPrimary));
         snackbar.show();

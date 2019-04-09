@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">Weather</string>
-    <string name="drawer_open">Open</string>
-    <string name="drawer_close">Close</string>
-    <string name="title_home_activity">Home</string>
+    <string name="app_name">Погода</string>
+    <string name="drawer_open">Відкрити</string>
+    <string name="drawer_close">Закрити</string>
+    <string name="title_home_activity">Головна</string>
     <string name="title_spacing">For Spacing</string>
-    <string name="title_close_app">Close</string>
-    <string name="title_actions">ACTIONS</string>
-    <string name="title_activities">ACTIVITIES</string>
-    <string name="title_sync">SYNC</string>
+    <string name="title_close_app">Закрити</string>
+    <string name="title_actions">Дії</string>
+    <string name="title_activities">Меню</string>
+    <string name="title_sync">Оновити</string>
 </resources>
